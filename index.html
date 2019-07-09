@@ -19,7 +19,9 @@
 		<!--描绘video截图-->
 		<canvas id="canvas" width="480" height="320"></canvas>
 		<script>
-			var video = document.querySelector('#video')
+			var video = document.querySelector('#video');
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");
 			var myConstraints = {
 				video: {
 					facingMode: 'user' // 优先调用前置摄像头
@@ -27,9 +29,9 @@
 			}
 			navigator.mediaDevices.getUserMedia(myConstraints).then((stream) => {
 				// createObjectURL是个非常有用的API，诸位可以多研究研究
-				try{
+				try {
 					video.src = window.URL.createObjectURL(stream)
-				}catch(e){
+				} catch (e) {
 					console.log(e);
 					video.srcObject = stream;
 				}
