@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+		<title>Document1</title>
 		<style type='text/css'>
 			* {
 				margin: 0;
@@ -207,7 +208,12 @@
 				if (oCapture.mozSrcObject !== undefined) {
 					oCapture.mozSrcObject = buffer;
 				} else {
-					oCapture.src = window.URL && window.URL.createObjectURL(buffer);
+					try{
+						oCapture.src = window.URL && window.URL.createObjectURL(buffer);
+					}catch(e){
+						//TODO handle the exception
+						oCapture.srcObject = buffer;
+					}
 				}
 				oCapture.play();
 			}
