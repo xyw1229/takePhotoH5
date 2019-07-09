@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="css/weui.css">
 		<script type="text/javascript">
 			document.addEventListener('plusready', function() {
 				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
@@ -13,35 +12,37 @@
 		</script>
 	</head>
 	<body>
-		<div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <div class="weui-uploader">
-                        <div class="weui-uploader__hd">
-                            <p class="weui-uploader__title">图片上传</p>
-                            <div class="weui-uploader__info">0/2</div>
-                        </div>
-                        <div class="weui-uploader__bd">
-                            <ul class="weui-uploader__files" id="uploaderFiles">
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <div class="weui-uploader__file-content">
-                                        <i class="weui-icon-warn"></i>
-                                    </div>
-                                </li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <div class="weui-uploader__file-content">50%</div>
-                                </li>
-                            </ul>
-                            <div class="weui-uploader__input-box">
-                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!--video用于显示媒体设备的视频流，自动播放-->
+		<video id="video"></video>
+		<!--拍照按钮-->
+		<div><button id="capture">拍照</button></div>
+		<!--描绘video截图-->
+		<canvas id="canvas" width="480" height="320"></canvas>
+		<script>
+			var video = document.querySelector('#video')
+			var myConstraints = {
+				video: {
+					facingMode: 'user' // 优先调用前置摄像头
+				}
+			}
+			navigator.mediaDevices.getUserMedia(myConstraints).then((stream) => {
+				// createObjectURL是个非常有用的API，诸位可以多研究研究
+				try{
+					video.src = window.URL.createObjectURL(stream)
+				}catch(e){
+					console.log(e);
+					video.srcObject = stream;
+				}
+				video.play()
+			}, (error) => {
+				console.error(error.name || error)
+			})
+
+			//注册拍照按钮的单击事件
+			document.getElementById("capture").addEventListener("click", function() {
+				//绘制画面
+				context.drawImage(video, 0, 0, 480, 320);
+			});
+		</script>
 	</body>
 </html>
