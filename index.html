@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
+		<link rel="stylesheet" href="css/weui.css">
 		<script type="text/javascript">
 			document.addEventListener('plusready', function() {
 				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
@@ -12,63 +13,35 @@
 		</script>
 	</head>
 	<body>
-		<div class="demo-wrapper">
-
-			<h1>HTML5 获取摄像头和视频控制接口</h1>
-
-			<p class="demo-intro">使用Opera Next 或 Chrome Canary，这个页面可以用来自拍。请自行添加自拍逻辑。</p>
-
-			<!--
-		Ideally these elements aren't created until it's confirmed that the 
-		client supports video/camera, but for the sake of illustrating the 
-		elements involved, they are created with markup (not JavaScript)
-	-->
-			<video id="video" width="640" height="480" autoplay="" playsinline muted></video>
-			<button id="snap" class="sexyButton">Snap Photo</button>
-			<canvas id="mycanvas" width="640" height="480"></canvas>
-
-		</div>
-		<script>
-			// 注意本例需要在HTTPS协议网站中运行，新版本Chrome中getUserMedia接口在http下不再支持。
-			// 设置事件监听器
-			window.addEventListener("DOMContentLoaded", function() {
-				if (navigator.mediaDevices === undefined) {
-					var div = document.createElement("div");
-					div.innerHTML = 'mediaDevices not supported';
-					document.body.appendChild(div);
-				}
-
-				navigator.getUserMedia = navigator.getUserMedia ||
-					navigator.webkitGetUserMedia ||
-					navigator.mozGetUserMedia;
-
-				if (navigator.getUserMedia) {
-					navigator.getUserMedia({
-							audio: true,
-							video: {
-								width: 1280,
-								height: 720
-							}
-						},
-						function(stream) {
-							var video = document.querySelector('video');
-							video.srcObject = stream;
-							video.onloadedmetadata = function(e) {
-								video.play();
-							};
-						},
-						function(err) {
-							alert("The following error occurred: " + err.name);
-						}
-					);
-				} else {
-					var div = document.createElement("div");
-					div.innerHTML = 'getUserMedia not supported';
-					document.body.appendChild(div);
-					alert("getUserMedia not supported");
-				}
-
-			}, false);
-		</script>
+		<div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <div class="weui-uploader">
+                        <div class="weui-uploader__hd">
+                            <p class="weui-uploader__title">图片上传</p>
+                            <div class="weui-uploader__info">0/2</div>
+                        </div>
+                        <div class="weui-uploader__bd">
+                            <ul class="weui-uploader__files" id="uploaderFiles">
+                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
+                                    <div class="weui-uploader__file-content">
+                                        <i class="weui-icon-warn"></i>
+                                    </div>
+                                </li>
+                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
+                                    <div class="weui-uploader__file-content">50%</div>
+                                </li>
+                            </ul>
+                            <div class="weui-uploader__input-box">
+                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>
