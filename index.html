@@ -12,33 +12,63 @@
 		</script>
 	</head>
 	<body>
-		<!--video用于显示媒体设备的视频流，自动播放-->
-		<video id="video"></video>
-		<!--拍照按钮-->
-		<div><button id="capture">拍照</button></div>
-		<!--描绘video截图-->
-		<canvas id="canvas" width="480" height="320"></canvas>
-		<script>
-			var video = document.querySelector('#video')
-			var myConstraints = {
-				video: {
-					facingMode: 'user' // 优先调用前置摄像头
-				}
-			}
-			navigator.mediaDevices.getUserMedia(myConstraints).then((stream) => {
-				// createObjectURL是个非常有用的API，诸位可以多研究研究
-				console.log(window.URL);
-				video.src = window.URL.createObjectURL(stream)
-				video.play()
-			}, (error) => {
-				console.error(error.name || error)
-			})
+		<div class="demo-wrapper">
 
-			//注册拍照按钮的单击事件
-			document.getElementById("capture").addEventListener("click", function() {
-				//绘制画面
-				context.drawImage(video, 0, 0, 480, 320);
-			});
+			<h1>HTML5 获取摄像头和视频控制接口</h1>
+
+			<p class="demo-intro">使用Opera Next 或 Chrome Canary，这个页面可以用来自拍。请自行添加自拍逻辑。</p>
+
+			<!--
+		Ideally these elements aren't created until it's confirmed that the 
+		client supports video/camera, but for the sake of illustrating the 
+		elements involved, they are created with markup (not JavaScript)
+	-->
+			<video id="video" width="640" height="480" autoplay="" playsinline muted></video>
+			<button id="snap" class="sexyButton">Snap Photo</button>
+			<canvas id="mycanvas" width="640" height="480"></canvas>
+
+		</div>
+		<script>
+			// 注意本例需要在HTTPS协议网站中运行，新版本Chrome中getUserMedia接口在http下不再支持。
+			// 设置事件监听器
+			window.addEventListener("DOMContentLoaded", function() {
+				if (navigator.mediaDevices === undefined) {
+					var div = document.createElement("div");
+					div.innerHTML = 'mediaDevices not supported';
+					document.body.appendChild(div);
+				}
+
+				navigator.getUserMedia = navigator.getUserMedia ||
+					navigator.webkitGetUserMedia ||
+					navigator.mozGetUserMedia;
+
+				if (navigator.getUserMedia) {
+					navigator.getUserMedia({
+							audio: true,
+							video: {
+								width: 1280,
+								height: 720
+							}
+						},
+						function(stream) {
+							var video = document.querySelector('video');
+							video.srcObject = stream;
+							video.onloadedmetadata = function(e) {
+								video.play();
+							};
+						},
+						function(err) {
+							alert("The following error occurred: " + err.name);
+						}
+					);
+				} else {
+					var div = document.createElement("div");
+					div.innerHTML = 'getUserMedia not supported';
+					document.body.appendChild(div);
+					alert("getUserMedia not supported");
+				}
+
+			}, false);
 		</script>
 	</body>
 </html>
