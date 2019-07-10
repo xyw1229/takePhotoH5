@@ -28,11 +28,22 @@ window.onload=function(){
 }
 	
 
-	//注册拍照按钮的单击事件
+	//拍照按钮的单击事件
 	document.getElementById("capture").addEventListener("click", function() {
 		//绘制画面
 		context.drawImage(video, 0, 0,video.offsetWidth * ratio ,video.offsetHeight * ratio );
-		$('#video').hide();
+		switch ($(this).find('a').text()){
+			case '拍照':
+			$('#video').hide();
+			setTimeout(function(){$(".reRec-load").show();}, 1000);
+			$(this).addClass("reRec").find('a').html('重拍');
+			break;
+			case '重拍':
+			$('#video').show();
+			$(".reRec-load").hide();
+			$(this).removeClass("reRec").find('a').html('拍照');
+			break;
+		}
 	});
 
 	//方法关闭摄像头

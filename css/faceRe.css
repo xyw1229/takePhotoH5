@@ -1,6 +1,9 @@
-.video-wrap{margin: 15px;border-radius: 12px;border: 1px solid #e5e5e5;padding: 10px;}
+.video-wrap{border-radius: 12px;border: 1px solid #e5e5e5;padding: 10px 10px 10px;top: 50%;position: absolute;margin-top: -200px;}
 .video-div{width: 100%;height: 280px;position: relative;border-radius: 12px;overflow: hidden;background: #999;}
-#capture{background-color: #009cff;width: 44px;height: 44px;border-radius: 50%;display: inline-block;margin-top: 5px;line-height: 44px;
-    color: #FFF;font-size: 14px;}
-.btn-wrap{position: absolute;bottom: 15px;background: #009cff;left: 50%;margin-left: -22px;background-color: rgba(0,156,255,0.3);
-width: 54px;height: 54px;border-radius: 50%;text-align: center}
+.btn-wrap a{background-color: #009cff;font-weight: normal;width: 180px;border-radius: 44px;}
+.btn-wrap{margin-top: 15px;}
+.reRec a{background-color: rgb(255,99,94);}
+.weui-btn_primary:not(.weui-btn_disabled):active{background-color: rgba(0,156,255,0.9);}
+.reRec-load{position: absolute;width: 100%;height: 100%;background: rgba(0,0,0,0.4);text-align: center;padding-top: 100px;box-sizing: border-box;}
+.reRec-load p{color: #FFF;font-size: 14px;}
+.reRec-load .weui-loading{width: 40px;height: 40px;}
