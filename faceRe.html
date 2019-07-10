@@ -7,12 +7,40 @@
 		<link rel="stylesheet" href="css/faceRe.css"/>
 		<title>人脸识别</title>
 		<style>
-			html,body{height: 100%;}
+			html,body {height: 100%;}
 		</style>
 		<script src='js/jquery-3.2.1.min.js'></script>
 	</head>
-	<body style="padding: 15px;">
+	<body style="padding: 0px 15px;">
+		<div class="face-step">
+			<ul>
+				<li class='face-red'>
+					<div>
+						<span></span>
+						<h6>上传身份证</h6>
+					</div>
+				</li>
+				<li style="text-align: center;">
+					<div>
+						<span></span>
+						<h6>人脸识别</h6>
+					</div>
+				</li>
+				<li style="text-align: right;">
+					<div>
+						<span></span>
+						<h6>开始评分</h6>
+					</div>
+				</li>
+			</ul>
+		</div>
 		<div style="position: relative;height: 100%;">
+			<div class="video-wrap" style="margin-bottom: 15px;">
+				<div class="card-face_wrap">
+					<img src='img/card-face.png'/>
+					<p>上传身份证正面</p>
+				</div>
+			</div>
 			<div class="video-wrap">
 				<div id="video-wrap" class="video-div">
 					<div class="reRec-load" style="display: none;">
