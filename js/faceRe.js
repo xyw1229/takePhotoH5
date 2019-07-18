@@ -74,9 +74,10 @@ $('#capture').click(function () {
        // $('#canvas').css("marginLeft",Y-Y2+1);
     }
     aginRe = 1;
-    context.drawImage(video,0,0,video.offsetWidth * 1 ,video.offsetHeight * ratio );
+    context.drawImage(video,0,0,video.offsetWidth * ratio ,video.offsetHeight * ratio );
     switch ($(this).find('a').text()){
         case '识别':
+            $('#canvas').show();
             $('#video').hide();
             $(this).addClass("reRec").find('a').html('重新识别');
             $(".face-step li").eq(1).addClass('face-red');
@@ -85,6 +86,8 @@ $('#capture').click(function () {
 
             break;
         case '重新识别':
+			$('#video').show();
+            $('#canvas').hide();
             $(".face-step li").eq(1).removeClass('face-red');
             faceImg = "";
             $('#video').show();
@@ -124,7 +127,7 @@ function closeCamera() {
 //显示拍照
 function showVideo(){
     canvas.width = video.offsetWidth * ratio;
-    canvas.height = video.offsetHeight * ratio;
+    canvas.height = 200;
     context = canvas.getContext("2d");
     if(navigator.getUserMedia){
         navigator.mediaDevices.getUserMedia(myConstraints).then((stream) => {
