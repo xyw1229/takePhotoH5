@@ -11,50 +11,69 @@
 		</style>
 		<script src='js/jquery-3.2.1.min.js'></script>
 	</head>
-	<body style="padding: 0px 15px;">
-		<div class="face-step">
-			<ul>
-				<li class='face-red'>
-					<div>
-						<span></span>
-						<h6>上传身份证</h6>
-					</div>
-				</li>
-				<li style="text-align: center;">
-					<div>
-						<span></span>
-						<h6>人脸识别</h6>
-					</div>
-				</li>
-				<li style="text-align: right;">
-					<div>
-						<span></span>
-						<h6>开始评分</h6>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div style="position: relative;height: 100%;">
-			<div class="video-wrap" style="margin-bottom: 15px;">
-				<div class="card-face_wrap">
-					<img src='img/card-face.png'/>
-					<p>上传身份证正面</p>
-				</div>
-			</div>
-			<div class="video-wrap">
-				<div id="video-wrap" class="video-div">
-					<div class="reRec-load" style="display: none;">
-						<i class="weui-loading"></i>
-						<p>识别中...</p>
-					</div>
-					<video id="video" style="width:100%; height: 100%; object-fit: fill"></video>
-					<canvas id="canvas" class="canvas"></canvas>
-				</div>
-				<div class="btn-wrap" id="capture" >
-					<a href="javascript:;" class="weui-btn weui-btn_block weui-btn_primary">拍照</a>
-				</div>
-			</div>
-		</div>
-		<script src='js/faceRe.js'></script>
-	</body>
+	<body style="padding: 0px 5%">
+    <div class="face-step">
+        <ul>
+            <li>
+                <div>
+                    <span></span>
+                    <h6>上传身份证</h6>
+                </div>
+            </li>
+            <li style="text-align: center;" class="face-red">
+                <div>
+                    <span></span>
+                    <h6>人脸识别</h6>
+                </div>
+            </li>
+            <li style="text-align: right;">
+                <div>
+                    <span></span>
+                    <h6>开始评分</h6>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div style="position: relative;height: 100%;">
+        <div class="video-wrap" style="margin-bottom: 15px;">
+            <div class="card-face_wrap" val="0">
+                        <input id="upload" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+                        <img src="html/img/card-face.png" id="cardFace">
+                        <p>点击上传身份证正面</p>
+            </div>
+        </div>
+        <div class="video-wrap" style="border: none">
+            <div class="unDerIos11" style="display: none">
+               <div class="card-face_wrap" val="1">
+                    <input id="upload" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+                    <img src="html/img/face-img.png" id="faceImg">
+                    <p>点击自拍识别</p>
+                </div>
+            </div>
+            <div class="others" style="text-align: center">
+                <div class="others-div">
+                    <div id="video-wrap" class="video-div">
+                        <div class="reRec-load" style="display: none;">
+                            <i class="weui-loading"></i>
+                            <p>识别中...</p>
+                        </div>
+                        <div style="margin: 0 auto;height: 200px">
+                        <video id="video" style="height: 100%; margin: 0px -100%;"></video>
+                        <canvas id="canvas" class="canvas" width="400" height="200" style="margin-left: -37.3281px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-wrap reRec" id="capture">
+                    <a href="javascript:;" class="weui-btn weui-btn_block weui-btn_primary">重新识别</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var testOwid = "8655bd1eccbd41f6b26ec94bc9b6d0ca";//评价打分表owid-->
+        var weixinId = "11111111111111";//评价打分表owid
+        var hasLogin = "";
+    </script>
+    <script src="js/faceRe.js"></script>
+</body>
 </html>
