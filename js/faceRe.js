@@ -8,7 +8,8 @@ var myConstraints = {
 	// 优先调用前置摄像头
 	video: {facingMode: 'user'}
 }
-var faceImg,cardImg = '';
+var faceImg=0;
+var cardImg = 0;
 $(function () {
     showVideo();
 });
@@ -79,7 +80,7 @@ $('#capture').click(function () {
             $('#video').show();
             $('#canvas').hide();
             $(".face-step li").eq(1).removeClass('face-red');
-            faceImg = "";
+            faceImg = 0;
             $('#video').show();
             $(".reRec-load").hide();
             $(this).removeClass("reRec").find('a').html('识别');
@@ -95,10 +96,10 @@ function closeCamera() {
 
 //人脸比对 已经识只需传人脸照
 function faceMatch() {
-	alert(!faceImg||!cardImg);
+	alert(faceImg==0||cardImg==0);
     if(hasLogin&&hasLogin==1){
     }else{
-        if(!faceImg||!cardImg){
+        if(faceImg==0||cardImg==0){
             return;
         }
     }
