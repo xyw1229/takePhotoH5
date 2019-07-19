@@ -49,11 +49,11 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
             that.html(str);
             if(imgType==1){
                 $(".face-step li").eq(0).addClass('face-red');
-				alert(this.result)
                 cardImg = this.result;
+				alert(1)
             }else if(imgType==2){
                 $(".face-step li").eq(1).addClass('face-red');
-				alert(this.result)
+				alert(2)
                 faceImg = this.result;
             }
 			//alert(imgType+(imgType==1))
@@ -97,8 +97,6 @@ function closeCamera() {
 
 //人脸比对 已经识只需传人脸照
 function faceMatch() {
-	alert('开始比对');
-	alert(!faceImg||!cardImg);
     if(hasLogin&&hasLogin==1){
     }else{
         if(!faceImg||!cardImg){
