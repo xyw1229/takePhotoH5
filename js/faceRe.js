@@ -11,6 +11,9 @@ var myConstraints = {
 var faceImg=0;
 var cardImg = 0;
 $(function () {
+	 if(typeof FileReader == "undefined"){
+                alert("您的浏览器不支持FileReader对象！");
+            }
     showVideo();
 });
 
