@@ -44,7 +44,6 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
     rd.readAsDataURL(file);  //读取类型为base64
     $(this).clone().replaceAll(file=this);
     rd.onload=function (ev) {
-		   alert(imgType+(imgType==1))
             //图片显示且上传
             var str = '<input id="upload"  class="weui-uploader__input" type="file" accept="image/*" multiple=""><img id="imgDetail" src='+this.result+' />';
             that.html(str);
@@ -55,6 +54,7 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
                 $(".face-step li").eq(1).addClass('face-red');
                 faceImg = this.result;
             }
+			alert(imgType+(imgType==1))
             faceMatch();
     }
 
