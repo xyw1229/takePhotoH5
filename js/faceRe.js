@@ -50,10 +50,8 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
             if(imgType==1){
                 $(".face-step li").eq(0).addClass('face-red');
                 cardImg = this.result;
-				alert(1)
             }else if(imgType==2){
                 $(".face-step li").eq(1).addClass('face-red');
-				alert(2)
                 faceImg = this.result;
             }
 			//alert(imgType+(imgType==1))
