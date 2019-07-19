@@ -54,7 +54,7 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
                 $(".face-step li").eq(1).addClass('face-red');
                 faceImg = this.result;
             }
-			alert(imgType+(imgType==1))
+			//alert(imgType+(imgType==1))
             faceMatch();
     }
 
