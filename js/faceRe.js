@@ -96,6 +96,7 @@ function closeCamera() {
 //人脸比对 已经识只需传人脸照
 function faceMatch() {
 	alert('开始比对');
+	alert(!faceImg||!cardImg);
     if(hasLogin&&hasLogin==1){
     }else{
         if(!faceImg||!cardImg){
