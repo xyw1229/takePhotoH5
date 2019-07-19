@@ -1,6 +1,5 @@
 //人脸识别 20190710
 var buffer,context;
-var aginRe = 0;//控制canvas样式
 var video = document.querySelector('#video');
 var canvas = document.getElementById("canvas");
 var videoWrap = document.getElementById("video-wrap");
@@ -38,20 +37,20 @@ var reader = new FileReader();
 $('.card-face_wrap').on('change','#upload',function(){//图片上传
     var that =$(this).parents(".card-face_wrap");
     var imgType = that.attr('val');
-    var AllowImgFileSize = 2100000; //上传图片最大值(单位字节)（ 2 M = 2097152 B ）超过2M上传失败
+    //var AllowImgFileSize = 2100000; //上传图片最大值(单位字节)（ 2 M = 2097152 B ）超过2M上传失败
     var rd=new FileReader();  //创建文件读取对象
     var file=$(this)[0].files[0];
-    var imgSize = file.size;
+    //var imgSize = file.size;
     rd.readAsDataURL(file);  //读取类型为base64
     $(this).clone().replaceAll(file=this);
     rd.onload=function (ev) {
             //图片显示且上传
             var str = '<input id="upload"  class="weui-uploader__input" type="file" accept="image/*" multiple=""><img id="imgDetail" src='+this.result+' />';
             that.html(str);
-            if(imgType==0){
+            if(imgType==1){
                 $(".face-step li").eq(0).addClass('face-red');
                 cardImg = this.result;
-            }else{
+            }else if(imgType==2){
                 $(".face-step li").eq(1).addClass('face-red');
                 faceImg = this.result;
             }
@@ -65,16 +64,7 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
 //拍照按钮的单击事件
 $('#capture').click(function () {
     //绘制画面
-    //var X = $('#video').offset().top;
-    var Y = $('#video').offset().left;
-    //var X1 = $('#canvas').position().top;
-    var Y2 = $('#canvas').offset().left;
-    if(aginRe==0){
-        console.log(1);
-       // $('#canvas').css("marginLeft",Y-Y2+1);
-    }
-    aginRe = 1;
-    context.drawImage(video,0,0,video.offsetWidth * ratio ,video.offsetHeight * ratio );
+    context.drawImage(video,0,0,video.offsetWidth * 1 ,video.offsetHeight * 1 );
     switch ($(this).find('a').text()){
         case '识别':
             $('#canvas').show();
@@ -82,11 +72,10 @@ $('#capture').click(function () {
             $(this).addClass("reRec").find('a').html('重新识别');
             $(".face-step li").eq(1).addClass('face-red');
             faceImg = 1;
-            //faceMatch();
-
+            faceMatch();
             break;
         case '重新识别':
-			$('#video').show();
+            $('#video').show();
             $('#canvas').hide();
             $(".face-step li").eq(1).removeClass('face-red');
             faceImg = "";
@@ -101,6 +90,29 @@ $('#capture').click(function () {
 function closeCamera() {
     buffer && buffer.getTracks()[0].stop();
 }
+
+
+//人脸比对 已经识只需传人脸照
+function faceMatch() {
+	console.log(2222222222);
+	console.log("faceImg:"+faceImg);
+	console.log("cardImg:"+cardImg);
+    if(hasLogin&&hasLogin==1){
+    }else{
+        if(!faceImg||!cardImg){
+            return;
+        }
+    }
+	console.log(3333);
+    var paramThis = {
+        "img1":(canvas.toDataURL('image/png')),
+        "img2":cardImg,
+        "empWeixin":weixinId
+    }
+	alert(1);
+    $('.reRec-load').show();
+}
+
 
 
 	/* function getUserMedia(constrains, success, error) {
