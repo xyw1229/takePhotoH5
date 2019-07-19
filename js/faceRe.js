@@ -95,15 +95,17 @@ function closeCamera() {
 
 //人脸比对 已经识只需传人脸照
 function faceMatch() {
+	alert('开始比对');
     if(hasLogin&&hasLogin==1){
     }else{
         if(!faceImg||!cardImg){
             return;
         }
     }
-	alert("faceImg:"+faceImg);
-	alert("cardImg:"+cardImg);
-	console.log(3333);
+	//alert("faceImg:"+faceImg);
+	//alert("cardImg:"+cardImg);
+	
+	alert(3333);
     var paramThis = {
         "img1":(canvas.toDataURL('image/png')),
         "img2":cardImg,
