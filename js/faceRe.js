@@ -49,9 +49,11 @@ $('.card-face_wrap').on('change','#upload',function(){//图片上传
             that.html(str);
             if(imgType==1){
                 $(".face-step li").eq(0).addClass('face-red');
+				alert(this.result)
                 cardImg = this.result;
             }else if(imgType==2){
                 $(".face-step li").eq(1).addClass('face-red');
+				alert(this.result)
                 faceImg = this.result;
             }
 			//alert(imgType+(imgType==1))
